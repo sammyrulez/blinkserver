@@ -1,0 +1,7 @@
+Django==1.5c2
+coverage==3.6
+distribute==0.6.31
+django-admin-bootstrapped==0.3.2
+django-coverage==1.2.2
+pyusb==1.0.0a3
+wsgiref==0.1.2
