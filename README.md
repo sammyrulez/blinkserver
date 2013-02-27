@@ -10,15 +10,11 @@ Installation
  - (Optional but strongly suggested) create a virtualenv
  - install requirements
  ```bash
-
- pip install -r requirements.txt
-
+    pip install -r requirements.txt
  ```
  - run the server
  ```bash
-
-python manage.py runserver
-
+    python manage.py runserver
  ```
 
  For setting up a proper enviroment for a Djnago application see [here](https://docs.djangoproject.com/en/dev/howto/deployment/wsgi/uwsgi/)
