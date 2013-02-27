@@ -1,0 +1,46 @@
+<fieldset class="_module _aligned" id="fieldset-{{ forloop.counter }}" style="background:transparent">
+    {% if fieldset.name %}
+    <legend>
+        {% if 'collapse' in fieldset.classes %}
+        <a data-toggle="collapse" data-target="#fieldset-{{ forloop.counter }} .fields">
+        {% endif %}
+        {{ fieldset.name }}
+        {% if 'collapse' in fieldset.classes %}
+        &nbsp;<span class="btn btn-mini"><i class="icon-resize-full"></i></span>
+        </a>
+        {% endif %}
+    </legend>
+    {% endif %}
+    <div class="fields {% if not errors %}{{ fieldset.classes }}{% endif %}">
+    {% if fieldset.description %}
+        <div class="description">{{ fieldset.description|safe }}</div>
+    {% endif %}
+    {% for line in fieldset %}
+        <div class="control-group {% if line.fields|length_is:'1' and line.errors %} error{% endif %}{% for field in line %}{% if field.field.name %} field-{{ field.field.name }}{% endif %}{% endfor %}">
+            <div class="control-group  field-blue">
+
+                <div>
+
+                        <div class="control-label">
+                            <label for="id_blinkstatus_set-0-blue" class="required">Color</label>
+                        </div>
+                        <div class="controls">
+                             <input class="vIntegerField" id="color-picker-{{ forloop.counter }}" name="color-picker-{{ forloop.counter }}" type="text" value="8">
+                                <input class="vIntegerField" id="id_blinkstatus_set-{{ forloop.counter }}-ed"
+                                                             name="blinkstatus_set-{{ forloop.counter }}-blue" type="hidden" value="8">
+                                 <input class="vIntegerField" id="id_blinkstatus_set-{{ forloop.counter }}-green" name="blinkstatus_set-{{ forloop.counter }}-blue" type="hidden" value="8">
+                                  <input class="vIntegerField" id="id_blinkstatus_set-{{ forloop.counter }}-blue" name="blinkstatus_set-{{ forloop.counter }}-blue" type="hidden" value="8">
+
+
+
+                        </div>
+
+                </div>
+
+        </div>
+
+
+        </div>
+    {% endfor %}
+    </div>
+</fieldset>
