@@ -39,6 +39,7 @@ def hook(request,hook_name):
         if step.fading_time:
            transition_time = step.fading_time
         pattern.append((transition_time,(step.red, step.green, step.blue)))
+        pattern.append((step.duration,(step.red, step.green, step.blue)))
 
     blink.set_pattern(pattern)
     blink.play()

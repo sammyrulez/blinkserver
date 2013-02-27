@@ -1,9 +1,12 @@
 from django.contrib import admin
 from django.contrib.auth.models import User
+from django_admin_bootstrapped.admin.models import SortableInline
 from blinkserver.core.models import BlinkStatus ,Hook
 
-class BlinkStatusInline(admin.TabularInline):
+class BlinkStatusInline(admin.StackedInline, SortableInline):
     model = BlinkStatus
+    extra = 0
+    max_num=12
 
 class HookAdmin(admin.ModelAdmin):
     fields = ('name','private',)
