@@ -12,12 +12,23 @@ Installation
  ```
     pip install -r requirements.txt
  ```
+ - init local db
+  ```
+    python manage.py syncdb
+    python manage.py migrate
+ ```
  - run the server
  ```
     python manage.py runserver
  ```
 
  For setting up a proper enviroment for a Djnago application see [here](https://docs.djangoproject.com/en/dev/howto/deployment/wsgi/uwsgi/)
+
+ Usage
+ =====
+ - login into http://[hostname]:8000/admin
+ - create a hook with a color pattern
+ - set the hook url in your service of choice
 
 
 Requirements
