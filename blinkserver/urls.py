@@ -13,5 +13,6 @@ urlpatterns = patterns('',
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
+    url(r'^hook/(?P<hook_name>\w+)','blinkserver.core.views.hook'),
     url(r'^admin/', include(admin.site.urls)),
 )
