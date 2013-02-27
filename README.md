@@ -5,15 +5,15 @@ The Blink Server is a configurable "hook service" to connect [obscure] cloud ser
 
 Installation
 ============
- - install [libusb](http://www.libusb.org/) ( on OSX use ''brew install libusb'')
+ - install [libusb](http://www.libusb.org/) ( on OSX use  ``` brew install libusb ```)
  - clone this repo
  - (Optional but strongly suggested) create a virtualenv
  - install requirements
- ```bash
+ ```
     pip install -r requirements.txt
  ```
  - run the server
- ```bash
+ ```
     python manage.py runserver
  ```
 
