@@ -15,6 +15,7 @@ class BlinkStatus(models.Model):
     blue = models.IntegerField()
     hook =models.ForeignKey(Hook)
     fading_time = models.FloatField(blank=True, null=True)
+    duration = models.FloatField()
     position = models.PositiveSmallIntegerField("Position")
     def __str__(self):
         return "Blink Status %d for %s" %(self.position,self.hook.name)
