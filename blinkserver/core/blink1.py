@@ -271,6 +271,21 @@ class Blink1(object):
             # The 9-byte message.
             message)
 
+class BlinkWrapper(object):
+    """docstring for BlinkWrapper
+"""
+    def __init__(self):
+        devices = find()
+        self.led = devices[0]
+    def set_pattern(self,pattern):
+        self.led.set_pattern(pattern)
+    def set_rgb(self,r,g,b):
+        self.led.set_rgb(r,g,b)
+    def play(self):
+        self.led.play()
+    def stop(self):
+        self.led.stop()
+
 
 if __name__ == '__main__':
     dev = find()[0]

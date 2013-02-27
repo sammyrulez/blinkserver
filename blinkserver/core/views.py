@@ -45,3 +45,8 @@ def hook(request,hook_name):
 
     return HttpResponse('Ok', status=200)
 
+@http_basic_auth
+def private_hook(request,hook_name):
+    #todo
+    return HttpResponse('Ok', status=200)
+

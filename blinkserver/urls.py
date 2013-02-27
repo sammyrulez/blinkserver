@@ -14,5 +14,6 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     url(r'^hook/(?P<hook_name>\w+)','blinkserver.core.views.hook'),
+    url(r'^privatehook/(?P<hook_name>\w+)','blinkserver.core.views.private_hook'),
     url(r'^admin/', include(admin.site.urls)),
 )
