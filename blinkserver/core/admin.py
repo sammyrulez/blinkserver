@@ -6,7 +6,7 @@ class BlinkStatusInline(admin.TabularInline):
     model = BlinkStatus
 
 class HookAdmin(admin.ModelAdmin):
-    fields = ('name',)
+    fields = ('name','private',)
     list_fileds=('name',)
     ordering = ('name',)
     search_fields = ['name']
