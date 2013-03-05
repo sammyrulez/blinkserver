@@ -17,29 +17,44 @@
     {% endif %}
     {% for line in fieldset %}
         <div class="control-group {% if line.fields|length_is:'1' and line.errors %} error{% endif %}{% for field in line %}{% if field.field.name %} field-{{ field.field.name }}{% endif %}{% endfor %}">
-            <div class="control-group  field-blue">
+            {% for field in line %}
+                <div{% if not line.fields|length_is:'1' %} class="field-box{% if field.field.name %} field-{{ field.field.name }}{% endif %}{% if not field.is_readonly and field.errors %} errors{% endif %}"{% endif %}>
 
-                <div>
+                    {% if field.field.name == 'red' or  field.field.name == 'green' or   field.field.name == 'blue'  or  field.field.name == 'position' %}
 
+                            {{ field.field }}
+
+                    {% else %}
                         <div class="control-label">
-                            <label for="id_blinkstatus_set-0-blue" class="required">Color</label>
+                           {{ field.label_tag }}
                         </div>
                         <div class="controls">
-                             <input class="vIntegerField" id="color-picker-{{ forloop.counter }}" name="color-picker-{{ forloop.counter }}" type="text" value="8">
-                                <input class="vIntegerField" id="id_blinkstatus_set-{{ forloop.counter }}-ed"
-                                                             name="blinkstatus_set-{{ forloop.counter }}-blue" type="hidden" value="8">
-                                 <input class="vIntegerField" id="id_blinkstatus_set-{{ forloop.counter }}-green" name="blinkstatus_set-{{ forloop.counter }}-blue" type="hidden" value="8">
-                                  <input class="vIntegerField" id="id_blinkstatus_set-{{ forloop.counter }}-blue" name="blinkstatus_set-{{ forloop.counter }}-blue" type="hidden" value="8">
-
-
-
+                             {% if field.field.name == 'color_picker'  %}
+                                <div class="input-append color" data-color="rgb(255, 146, 180)" data-color-format="rgb" id="pk_{{field.field.name}}">
+                                  {{ field.field }}
+                                  <span class="add-on"><i class=" icon-eye-open"></i></span>
+                                </div>
+                                <script type="text/javascript">
+                                     $(document).ready(function() {
+                                         $('#pk_{{field.field.name}}').colorpicker();
+                                     });
+                                </script
+                             {% else %}
+                                {% if field.is_readonly %}
+                                    <p>{{ field.contents }}</p>
+                                {% else %}
+                                    {{ field.field }}
+                                {% endif %}
+                                {% if not field.is_readonly and field.errors %}<span class="help-inline">{{ field.errors|striptags }}</span>{% endif %}
+                                {% if field.field.help_text %}
+                                    <span class="help-block">{{ field.field.help_text|safe }}</span>
+                                {% endif %}
+                             {% endif %}
                         </div>
+                    {% endif %}
 
                 </div>
-
-        </div>
-
-
+            {% endfor %}
         </div>
     {% endfor %}
     </div>
