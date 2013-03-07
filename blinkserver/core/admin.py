@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
 from django_admin_bootstrapped.admin.models import SortableInline
 from blinkserver.core.models import BlinkStatus ,Hook
 from django.forms import ModelForm
@@ -29,7 +30,7 @@ class BlinkStatusInline(admin.StackedInline, SortableInline):
 
 class HookAdmin(admin.ModelAdmin):
     fields = ('name','private',)
-    list_fileds=('name',)
+    list_display=('name','link_to_hook')
     ordering = ('name',)
     search_fields = ['name']
     inlines = [
@@ -52,6 +53,12 @@ class HookAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
         obj.owner = request.user
         obj.save()
+
+    def link_to_hook(self,obj):
+        return "<a href='%s' ><li class='icon-tag'></li></a>" % reverse('public_hook',  args=[obj.name])
+
+    link_to_hook.allow_tags = True
+
 
 
 admin.site.register(Hook, HookAdmin)
