@@ -23,28 +23,31 @@ def http_basic_auth(func):
         return func(request, *args, **kwargs)
     return _decorator
 
-def hook(request,hook_name):
-    req_hook = Hook.objects.get(name__exact = hook_name)
-    if req_hook.private:
-        return HttpResponse('Unauthorized', status=401)
-    #TODO this should be queued
+
+def start_blink(req_hook):
+    #TODO check priority
     blink = settings.BLINK_MANAGER
     try:
         blink.stop()
     except:
         pass
-
     pattern = [(0.25, (0, 0, 0))]
-
     for step in req_hook.blinkstatus_set.all():
         transition_time = 0.25
         if step.fading_time:
-           transition_time = step.fading_time
-        pattern.append((transition_time,(step.red, step.green, step.blue)))
-        pattern.append((step.duration,(step.red, step.green, step.blue)))
-
+            transition_time = step.fading_time
+        pattern.append((transition_time, (step.red, step.green, step.blue)))
+        pattern.append((step.duration, (step.red, step.green, step.blue)))
     blink.set_pattern(pattern)
     blink.play()
+
+
+def hook(request,hook_name):
+    req_hook = Hook.objects.get(name__exact = hook_name)
+    if req_hook.private:
+        return HttpResponse('Unauthorized', status=401)
+
+    start_blink(req_hook)
 
     return HttpResponse('Ok', status=200)
 
@@ -61,6 +64,10 @@ def stop_blink(request):
 
 @http_basic_auth
 def private_hook(request,hook_name):
-    #todo
+    req_hook = Hook.objects.get(name__exact = hook_name)
+    if req_hook.owner.id != request.user.id:
+        return HttpResponse('sonqu', status=401)
+
+    start_blink(req_hook)
     return HttpResponse('Ok', status=200)
 
