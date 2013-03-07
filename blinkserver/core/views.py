@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 
 from functools import wraps
+from django.shortcuts import redirect
 
 def http_basic_auth(func):
     @wraps(func)
@@ -56,7 +57,7 @@ def stop_blink(request):
         blink.set_rgb(0,0,0)
     except:
         pass
-    return HttpResponse('Ok', status=200)
+    return redirect('admin:index')
 
 @http_basic_auth
 def private_hook(request,hook_name):

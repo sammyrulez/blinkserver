@@ -162,4 +162,4 @@ LOGGING = {
 
 from blinkserver.core.blink1 import BlinkWrapper
 BLINK_MANAGER = BlinkWrapper()
-LOGIN_URL = 'admin:login'
+
