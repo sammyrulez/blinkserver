@@ -126,7 +126,7 @@ INSTALLED_APPS = (
     'django_admin_bootstrapped',
     'django.contrib.admin',
     'south',
-    'django_coverage',
+    #'django_coverage',
     'blinkserver.core',
 
 )
