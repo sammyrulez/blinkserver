@@ -3,6 +3,11 @@ Blink Server
 
 The Blink Server is a configurable "hook service" to connect [obscure] cloud service with a nice, local [blink(1)](http://blink1.thingm.com) USB RGB LED.
 
+
+[![Build Status](https://travis-ci.org/sammyrulez/blinkserver.png?branch=master)](https://travis-ci.org/sammyrulez/blinkserver)
+
+
+
 Installation
 ============
  - install [libusb](http://www.libusb.org/) ( on OSX use  ``` brew install libusb ```)

@@ -17,4 +17,6 @@ urlpatterns = patterns('',
     url(r'^admin/stop_blink/$','blinkserver.core.views.stop_blink'),
     url(r'^privatehook/(?P<hook_name>\w+)','blinkserver.core.views.private_hook'),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^accounts/login/$', 'django.contrib.auth.views.login', {'template_name': 'admin/login.html'}),
+
 )
