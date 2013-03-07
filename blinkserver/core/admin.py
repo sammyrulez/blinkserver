@@ -8,24 +8,20 @@ from django.forms.widgets import HiddenInput ,TextInput
 from django import forms
 
 class BlinkStatusInlineForm(ModelForm):
-    color_picker = forms.CharField(required=False, label="Color")
 
     class Meta:
         model = BlinkStatus
         widgets = {
-            'red': HiddenInput(),
-            'green': HiddenInput(),
-            'blue': HiddenInput(),
             'position': HiddenInput(),
         }
-        fields = ('color_picker','duration','fading_time','red','green','blue','position')
+        fields = ('duration','fading_time','red','green','blue','position')
 
 
 class BlinkStatusInline(admin.StackedInline, SortableInline):
     model = BlinkStatus
     extra = 0
     max_num=12
-    template="admin/core/blinkstatus/stacked.html"
+    form = BlinkStatusInlineForm
 
 
 class HookAdmin(admin.ModelAdmin):
