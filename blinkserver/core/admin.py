@@ -7,7 +7,7 @@ class BlinkStatusInline(admin.StackedInline, SortableInline):
     model = BlinkStatus
     extra = 0
     max_num=12
-    template="admin/core/blinkstatus/stacked.html"
+    #template="admin/core/blinkstatus/stacked.html"
 
 class HookAdmin(admin.ModelAdmin):
     fields = ('name','private',)

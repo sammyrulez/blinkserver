@@ -1,7 +1,8 @@
 # Create your views here.
 from blinkserver.core.models import BlinkStatus ,Hook
 from blinkserver import settings
-import threading
+from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 
 from functools import wraps
@@ -44,6 +45,17 @@ def hook(request,hook_name):
     blink.set_pattern(pattern)
     blink.play()
 
+    return HttpResponse('Ok', status=200)
+
+@login_required
+@staff_member_required
+def stop_blink(request):
+    blink = settings.BLINK_MANAGER
+    try:
+        blink.stop()
+        blink.set_rgb(0,0,0)
+    except:
+        pass
     return HttpResponse('Ok', status=200)
 
 @http_basic_auth

@@ -280,7 +280,7 @@ class BlinkWrapper(object):
     def set_pattern(self,pattern):
         self.led.set_pattern(pattern)
     def set_rgb(self,r,g,b):
-        self.led.set_rgb(r,g,b)
+        self.led.set_rgb((r,g,b))
     def play(self):
         self.led.play()
     def stop(self):
