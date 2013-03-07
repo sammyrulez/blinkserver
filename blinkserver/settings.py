@@ -159,7 +159,9 @@ LOGGING = {
         },
     }
 }
-
-from blinkserver.core.blink1 import BlinkWrapper
-BLINK_MANAGER = BlinkWrapper()
+try:
+    from blinkserver.core.blink1 import BlinkWrapper
+    BLINK_MANAGER = BlinkWrapper()
+except Exception :
+    print("BLINK_MANAGER not initialized")
 
