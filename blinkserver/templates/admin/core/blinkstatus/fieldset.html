@@ -30,13 +30,13 @@
                         </div>
                         <div class="controls">
                              {% if field.field.name == 'color_picker'  %}
-                                <div class="input-append color" data-color="rgb(255, 146, 180)" data-color-format="rgb" id="pk_{{field.field.name}}">
+                                <div class="input-append color" data-color="rgb(100, 0, 180)" data-color-format="rgb" id="pk_{{field.field.name}}_{{forloop.counter0}}">
                                   {{ field.field }}
-                                  <span class="add-on"><i class=" icon-eye-open"></i></span>
+                                  <span class="add-on"><i class="icon-tint"></i></span>
                                 </div>
                                 <script type="text/javascript">
                                      $(document).ready(function() {
-                                         $('#pk_{{field.field.name}}').colorpicker();
+                                         $('#pk_{{field.field.name}}_{{forloop.counter0}}').colorpicker();
                                      });
                                 </script
                              {% else %}
